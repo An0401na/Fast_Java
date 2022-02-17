@@ -1,0 +1,28 @@
+package ch14;
+
+public class Taxi {
+	private	String taxiName;
+	private int money;
+	private int distance;
+	
+	public Taxi ( ) {
+	}
+	
+	public void setTaxiName(String taxiName){
+		this.taxiName = taxiName;
+		
+	}
+	
+	
+	public void take(int distance) {
+		this.money+=distance*10;
+		this.distance+=distance;
+	}
+	
+	public void showTaxiInfo() {
+		System.out.println(taxiName+"회사 택시의 주행거리는 " + distance+"이고, 수입은 "+ money+"원 입니다.");
+	}
+	
+	
+	
+}

@@ -1,0 +1,114 @@
+package ch14;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class TakeTransTest {
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		ArrayList<Student> studentList = new ArrayList<Student>();
+		
+		System.out.println("몇 명의 학생을 입력하시겠습니까? ");
+		int studentCount = scanner.nextInt();
+		for(int i=0; i<studentCount; i++) {
+			System.out.println("학생의 이름과 가지고 있는 돈을 입력해주세요");
+			System.out.printf("이름 : ");
+			String name = scanner.next();
+			System.out.printf("가지고 있는 돈 : ");
+			int money = scanner.nextInt();
+			
+			studentList.add(new Student(name, money));	
+		}
+		System.out.println("\n========================================================");
+		for(int i=0; i<studentCount; i++) {
+			System.out.printf(i+1 +". "+ studentList.get(i).getName()+" \t");	
+		}
+		System.out.println("\n========================================================\n");
+		Bus [] bus = new Bus[3];
+		Subway [] subway = new Subway[3];
+		
+		for(int i=0, num=1; i<3; i++) {
+			
+			bus[i] = new Bus(100*num);
+			subway[i] = new Subway(1*num);
+			num++;
+		}
+		
+		int [] transNum = new int[studentCount];
+//		for(int i=0; i<studentCount; i++) 
+		int i=0;
+		while(true) {
+			for(i<studentCount) {
+				System.out.println(studentList.get(i).getName()+"을 버스와 지하철 중 어느 것에 태우겠습니까?");
+
+				System.out.println("1. 지하철 (1200원)  2. 버스 (1000원) ");
+				transNum[i] = scanner.nextInt();
+			
+				if(transNum[i] == 1) {
+					if(studentList.get(i).getMoney()>=1200) {
+						System.out.println("탑승할 지하철은 1호선, 2호선, 3호선 중 몇 호선 입니까?");
+						int subwayNum = scanner.nextInt();
+						if(subwayNum !=1 && subwayNum !=2 && subwayNum !=3 ) {
+							System.out.println("번호를 잘 못 입력하였습니다.");
+						}else {
+							System.out.println("<<"+studentList.get(i).getName()+"은 "+ subwayNum+ "호선 지하철을 탑승하였습니다.>>");
+							studentList.get(i).setTransport("Subway");
+							studentList.get(i).setTransNumber(subwayNum);
+							studentList.get(i).takeSubway(subway[subwayNum]);
+							System.out.println("");
+						}					
+					}else if(studentList.get(i).getMoney()>1000){
+						System.out.println("지하철을 타기엔 학생의 남은 돈이 부족합니다. 버스를 이용하시겠습니까? y/n ");
+						char yOrN = scanner.next().charAt(0);
+						if(yOrN == 'y') {
+							transNum[i]=2;
+						}
+					}else {
+						System.out.println("학생의 남은 돈이 부족하여 지하철을 탑승 할 수 없습니다.");
+					}
+					
+					
+				}else if(transNum[i] ==2) {
+					if(studentList.get(i).getMoney()>=1000) {
+						System.out.println("탑승할 버스를 100번, 200번, 300번 중 몇 번 입니까?");
+						int busNum = scanner.nextInt();
+						if(busNum !=100 && busNum !=200 && busNum !=300) {
+							System.out.println("번호를 잘 못 입력하였습니다.");
+						}else {
+							System.out.println("<< "+studentList.get(i).getName()+"은 "+ busNum+ "번 버스를 탑승하였습니다. >>");
+							studentList.get(i).setTransport("Bus");
+							studentList.get(i).setTransNumber(busNum);
+							studentList.get(i).takeBus(bus[busNum/100]);
+							System.out.println("");
+						}
+					}else {
+						System.out.println("<< 학생의 남은 돈이 부족하여 버스를 탑승 할 수 없습니다. >>");	
+					}
+				}else {
+					System.out.println("번호를 잘못 입력하셨습니다.");
+				}
+				i++;
+			}
+			
+			
+			
+		
+		System.out.println("\n========================================================");
+		for(int i=0; i<studentCount; i++) {
+			System.out.printf(i+1 +". ");
+			studentList.get(i).showStudentInfo();
+		}
+		System.out.println("\n========================================================\n");
+		for(int i=0; i<subway.length; i++) {
+			subway[i].showSubwayInfo();
+		}
+		System.out.println("\n========================================================\n");
+		for(int i=0; i<bus.length; i++) {
+			bus[i].showBusInfo();
+		}
+		System.out.println("\n========================================================\n");
+		
+	}
+}
