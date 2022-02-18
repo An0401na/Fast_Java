@@ -9,4 +9,6 @@
     <fullyQualifiedTypeName name="ch10.BirthDayTest"/>
     <fullyQualifiedTypeName name="ch14.Taxi"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="ch02.Customer"/>
+    <fullyQualifiedTypeName name="ch02.VIPCustomer"/>
 </qualifiedTypeNameHistroy>
