@@ -5,11 +5,14 @@ public class VIPCustomer extends Customer {
 	private String agentId;
 	double saleRatio;
 	
-	public VIPCustomer() {
+	public VIPCustomer(int customerID, String customerName) {
+		super(customerID, customerName);
 		bonusRatio = 0.05;
 		saleRatio= 0.1;
 		customerGrade="VIP";
 	}
+	
+	
 	
 	public int clacPrice(int price) {
 		bonusPoint += price * bonusRatio;

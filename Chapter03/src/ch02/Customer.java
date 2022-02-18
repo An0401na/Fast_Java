@@ -8,9 +8,18 @@ public class Customer {
 	int bonusPoint;
 	double bonusRatio; //보너스 적립 비율 일반 고객은 1% 보너스 적립
 	
-	public Customer() {
+//	public Customer() {
+//		bonusRatio = 0.01;
+//		customerGrade = "SILVER";
+//		 
+//	}
+	
+	public Customer (int customerID, String customerName) {
+		this.customerID=customerID;
+		this.customerName=customerName;
 		bonusRatio = 0.01;
 		customerGrade = "SILVER";
+		
 	}
 	
 	public int getCustomerID() {
